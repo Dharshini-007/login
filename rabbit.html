@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rabbit Products – PetPal</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .cart-btn {
+            background: #b5ead7;
+            color: #444;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1.2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 0.7rem;
+            transition: background 0.2s;
+        }
+        .cart-btn:hover {
+            background: #70c1b3;
+            color: #fff;
+        }
+        .added {
+            background: #ffdac1 !important;
+            color: #333 !important;
+        }
+        .rabbit-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(90deg, #fff5e1 60%, #b5ead7 100%);
+            padding: 2rem 0 1rem 0;
+            border-radius: 0 0 32px 32px;
+            box-shadow: 0 2px 12px #b5ead7;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .rabbit-header h1 {
+            font-size: 2.2rem;
+            margin: 0;
+            color: #70c1b3;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .rabbit-emoji {
+            font-size: 2.5rem;
+            animation: hop 1s infinite alternate;
+        }
+        @keyframes hop {
+            0% { transform: translateY(0);}
+            100% { transform: translateY(-8px);}
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.5rem 1.2rem;
+            background: #ffdac1;
+            color: #70c1b3;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            box-shadow: 0 1px 6px #b5ead7;
+            transition: background 0.2s, color 0.2s;
+        }
+        .back-link:hover {
+            background: #b5ead7;
+            color: #fff;
+        }
+        .back-link .arrow {
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+        .back-link:hover .arrow {
+            transform: translateX(-4px);
+        }
+        @media (max-width: 600px) {
+            .rabbit-header h1 {
+                font-size: 1.3rem;
+            }
+            .rabbit-emoji {
+                font-size: 1.7rem;
+            }
+            .back-link {
+                font-size: 1rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="rabbit-header">
+        <h1><span class="rabbit-emoji">🐰</span> Rabbit Products <span style="font-size:1.3rem;">– PetPal</span></h1>
+        <a href="index.html" class="back-link"><span class="arrow">←</span> Back to Home</a>
+    </header>
+    <section class="carousel">
+        <h2 style="text-align:center;">Rabbit Supplies</h2>
+        <div class="carousel-items">
+            <div class="product">
+                <img src="r1.webp" alt="Rabbit Food" class="product-img">
+                <h3>Premium Rabbit Food</h3>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="r2.webp" alt="Rabbit Toy" class="product-img">
+                <h3>Wooden Chew Toy</h3>
+                <div class="rating">⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="r3.jpg" alt="Rabbit Brush" class="product-img">
+                <h3>Soft Grooming Brush</h3>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <span>Made with 🐾 by PetPal</span>
+    </footer>
+    <script>
+        function addToCart(btn) {
+            btn.textContent = "Added!";
+            btn.classList.add("added");
+            btn.disabled = true;
+        }
+    </script>

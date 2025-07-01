@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat Products – PetPal</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .cart-btn {
+            background: #b2a4ff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1.2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 0.7rem;
+            transition: background 0.2s;
+        }
+        .cart-btn:hover {
+            background: #7367f0;
+        }
+        .added {
+            background: #f7d6e0 !important;
+            color: #333 !important;
+        }
+        .cat-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(90deg, #e0c3fc 60%, #f7d6e0 100%);
+            padding: 2rem 0 1rem 0;
+            border-radius: 0 0 32px 32px;
+            box-shadow: 0 2px 12px #b2a4ff;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .cat-header h1 {
+            font-size: 2.2rem;
+            margin: 0;
+            color: #7367f0;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .cat-emoji {
+            font-size: 2.5rem;
+            animation: purr 1s infinite alternate;
+        }
+        @keyframes purr {
+            0% { transform: scale(1);}
+            100% { transform: scale(1.1);}
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.5rem 1.2rem;
+            background: #f7d6e0;
+            color: #7367f0;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            box-shadow: 0 1px 6px #b2a4ff;
+            transition: background 0.2s, color 0.2s;
+        }
+        .back-link:hover {
+            background: #b2a4ff;
+            color: #fff;
+        }
+        .back-link .arrow {
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+        .back-link:hover .arrow {
+            transform: translateX(-4px);
+        }
+        @media (max-width: 600px) {
+            .cat-header h1 {
+                font-size: 1.3rem;
+            }
+            .cat-emoji {
+                font-size: 1.7rem;
+            }
+            .back-link {
+                font-size: 1rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="cat-header">
+        <h1><span class="cat-emoji">🐱</span> Cat Products <span style="font-size:1.3rem;">– PetPal</span></h1>
+        <a href="index.html" class="back-link"><span class="arrow">←</span> Back to Home</a>
+    </header>
+    <section class="carousel">
+        <h2 style="text-align:center;">Cat Supplies</h2>
+        <div class="carousel-items">
+            <div class="product">
+                <img src="c1.webp" alt="Cat Food" class="product-img">
+                <h3>Premium Cat Food</h3>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="c2.jpg" alt="Cat Toy" class="product-img">
+                <h3>Feather Teaser Toy</h3>
+                <div class="rating">⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="c3.jpeg" alt="Cat Bed" class="product-img">
+                <h3>Cozy Cat Bed</h3>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="c4.webp" alt="Cat Litter" class="product-img">
+                <h3>Clumping Cat Litter</h3>
+                <div class="rating">⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="c5.jpg" alt="Cat Scratcher" class="product-img">
+                <h3>Cat Scratching Post</h3>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="c6.jpg" alt="Cat Carrier" class="product-img">
+                <h3>Portable Cat Carrier</h3>
+                <div class="rating">⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="c7.jpg" alt="Cat Treats" class="product-img">
+                <h3>Healthy Cat Treats</h3>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="c8.webp" alt="Cat Brush" class="product-img">
+                <h3>Grooming Brush</h3>
+                <div class="rating">⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+    <!-- Cart Section -->
+    <section id="cart-section" style="max-width:500px;margin:2rem auto 1.5rem auto;background:#fff;border-radius:16px;box-shadow:0 2px 12px #b2a4ff;padding:1.5rem;display:none;">
+        <h2 style="text-align:center;color:#7367f0;margin-top:0;">🛒 Your Cart</h2>
+        <ul id="cart-list" style="list-style:none;padding:0;margin:0 0 1rem 0;"></ul>
+        <div id="cart-empty" style="text-align:center;color:#888;">Your cart is empty.</div>
+    </section>
+
+    <footer>
+        <span>Made with 🐾 by PetPal</span>
+    </footer>
+    <script>
+        // Store cart as array of {name, qty}
+        let cart = [];
+
+        function addToCart(btn) {
+            const productDiv = btn.closest('.product');
+            const name = productDiv.querySelector('h3').textContent;
+            let qtyInput = productDiv.querySelector('.qty-input');
+            let qty = qtyInput ? parseInt(qtyInput.value) : 1;
+            if (!qty || qty < 1) qty = 1;
+
+            // Check if already in cart
+            const found = cart.find(item => item.name === name);
+            if (found) {
+                found.qty += qty;
+            } else {
+                cart.push({name, qty});
+            }
+            updateCartDisplay();
+            if(qtyInput) qtyInput.value = 1;
+            showAddedFeedback(btn);
+        }
+
+        function showAddedFeedback(btn) {
+            let existing = btn.parentElement.querySelector('.added-feedback');
+            if (existing) existing.remove();
+            const span = document.createElement('span');
+            span.className = 'added-feedback';
+            span.textContent = '✔ Added';
+            span.style.marginLeft = '0.7rem';
+            span.style.color = '#43a047';
+            span.style.fontWeight = 'bold';
+            span.style.fontSize = '1rem';
+            btn.parentElement.appendChild(span);
+            setTimeout(() => {
+                if (span.parentElement) span.remove();
+            }, 1200);
+        }
+
+        function updateCartDisplay() {
+            const cartSection = document.getElementById('cart-section');
+            const cartList = document.getElementById('cart-list');
+            const cartEmpty = document.getElementById('cart-empty');
+            cartList.innerHTML = '';
+            if (cart.length === 0) {
+                cartSection.style.display = 'none';
+                cartEmpty.style.display = 'block';
+                return;
+            }
+            cartSection.style.display = 'block';
+            cartEmpty.style.display = 'none';
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.style.margin = "0.5rem 0";
+                li.innerHTML = `<b>${item.name}</b> &times; <span style="color:#7367f0">${item.qty}</span>
+                    <button onclick="removeFromCart('${item.name}')" style="margin-left:1rem;background:#b2a4ff;color:#fff;border:none;border-radius:6px;padding:0.2rem 0.7rem;cursor:pointer;">Remove</button>`;
+                cartList.appendChild(li);
+            });
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCartDisplay();
+        }
+    </script>
+</body>
+</html>
