@@ -119,15 +119,110 @@
                 <div class="rating">⭐⭐⭐⭐⭐</div>
                 <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
             </div>
+            <div class="product">
+                <img src="r4.jpg" alt="Rabbit Cage" class="product-img">
+                <h3>Spacious Rabbit Cage</h3>
+                <div class="rating">⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="r5.webp" alt="Hay Feeder" class="product-img">
+                <h3>Hay Feeder</h3>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="r6.jpg" alt="Rabbit Water Bottle" class="product-img">
+                <h3>Water Bottle</h3>
+                <div class="rating">⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="r7.jpg" alt="Rabbit Tunnel" class="product-img">
+                <h3>Fun Rabbit Tunnel</h3>
+                <div class="rating">⭐⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="r8.jpg" alt="Rabbit Treats" class="product-img">
+                <h3>Healthy Rabbit Treats</h3>
+                <div class="rating">⭐⭐⭐⭐</div>
+                <button class="cart-btn" onclick="addToCart(this)">Add to Cart</button>
+            </div>
         </div>
     </section>
+
+    <!-- Cart Section -->
+    <section id="cart-section" style="max-width:500px;margin:2rem auto 1.5rem auto;background:#fff;border-radius:16px;box-shadow:0 2px 12px #b5ead7;padding:1.5rem;display:none;">
+        <h2 style="text-align:center;color:#70c1b3;margin-top:0;">🛒 Your Cart</h2>
+        <ul id="cart-list" style="list-style:none;padding:0;margin:0 0 1rem 0;"></ul>
+        <div id="cart-empty" style="text-align:center;color:#888;">Your cart is empty.</div>
+    </section>
+
     <footer>
         <span>Made with 🐾 by PetPal</span>
     </footer>
     <script>
+        // Store cart as array of {name, qty}
+        let cart = [];
+
         function addToCart(btn) {
-            btn.textContent = "Added!";
-            btn.classList.add("added");
-            btn.disabled = true;
+            const productDiv = btn.closest('.product');
+            const name = productDiv.querySelector('h3').textContent;
+            let qty = 1; // Always add 1 per click
+
+            // Check if already in cart
+            const found = cart.find(item => item.name === name);
+            if (found) {
+                found.qty += qty;
+            } else {
+                cart.push({name, qty});
+            }
+            updateCartDisplay();
+            showAddedFeedback(btn);
+        }
+
+        function showAddedFeedback(btn) {
+            let existing = btn.parentElement.querySelector('.added-feedback');
+            if (existing) existing.remove();
+            const span = document.createElement('span');
+            span.className = 'added-feedback';
+            span.textContent = '✔ Added';
+            span.style.marginLeft = '0.7rem';
+            span.style.color = '#43a047';
+            span.style.fontWeight = 'bold';
+            span.style.fontSize = '1rem';
+            btn.parentElement.appendChild(span);
+            setTimeout(() => {
+                if (span.parentElement) span.remove();
+            }, 1200);
+        }
+
+        function updateCartDisplay() {
+            const cartSection = document.getElementById('cart-section');
+            const cartList = document.getElementById('cart-list');
+            const cartEmpty = document.getElementById('cart-empty');
+            cartList.innerHTML = '';
+            if (cart.length === 0) {
+                cartSection.style.display = 'none';
+                cartEmpty.style.display = 'block';
+                return;
+            }
+            cartSection.style.display = 'block';
+            cartEmpty.style.display = 'none';
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.style.margin = "0.5rem 0";
+                li.innerHTML = `<b>${item.name}</b> &times; <span style="color:#70c1b3">${item.qty}</span>
+                    <button onclick="removeFromCart('${item.name}')" style="margin-left:1rem;background:#b5ead7;color:#fff;border:none;border-radius:6px;padding:0.2rem 0.7rem;cursor:pointer;">Remove</button>`;
+                cartList.appendChild(li);
+            });
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCartDisplay();
         }
     </script>
+</body>
+</html>
